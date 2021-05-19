@@ -1,12 +1,15 @@
-language: node.js
+language: node_js
 
 services:
   - docker
 
+node_js:
+  - "12"
+
+cache:
+  directories:
+    - "node_modules"
+
 before_install:
   - docker build -t pigball/customer-reg-api -f Dockerfile .
   - docker run -d -p 3000:3000 pigball/customer-reg-api
-
-script:
-  - bundle exec rake test
-
