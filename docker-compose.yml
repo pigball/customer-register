@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  dev:
+    container_name: customer-reg-dev
+    image: customer-register/pigball
+    build:
+      context: .
+      dockerfile: /Dockerfile
+    command: npm run start:dev
+    ports:
+    - 3000:3000
+    networks:
+      - nestjs-network
+    restart: unless-stopped
+
+networks:
+  nestjs-network:

@@ -4,7 +4,7 @@
 
 # database migration
 cd app
-typeorm migration:run
+#typeorm migration:run
 
 # start the app
 node dist/main.js
