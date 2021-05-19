@@ -1,3 +1,12 @@
 sudo: required
 services:
   - docker
+
+before_install:
+  - REMOTE_NAME	:= 288007071024.dkr.ecr.ap-southeast-1.amazonaws.com/cutomer-reg-api
+  - TAG 		:= $$(git log -1 --pretty=%h)
+  - LOCAL_IMG 	:= ${NAME}:${TAG}
+  - REMOTE_IMG	:= ${REMOTE_NAME}:${TAG}
+  - docker build -t ${LOCAL_IMG} -f Dockerfile .
+  - docker tag ${LOCAL_IMG} ${REMOTE_IMG}
+
